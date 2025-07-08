@@ -1,0 +1,207 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(123, 100%, 50%);
+  --muted: hsl(0, 0%, 4%);
+  --muted-foreground: hsl(123, 100%, 30%);
+  --popover: hsl(0, 0%, 4%);
+  --popover-foreground: hsl(123, 100%, 50%);
+  --card: hsl(0, 0%, 7%);
+  --card-foreground: hsl(123, 100%, 50%);
+  --border: hsl(123, 100%, 50%);
+  --input: hsl(0, 0%, 7%);
+  --primary: hsl(123, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 7%);
+  --secondary-foreground: hsl(123, 100%, 50%);
+  --accent: hsl(195, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(0, 100%, 50%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(123, 100%, 50%);
+  --radius: 0.5rem;
+  
+  --matrix-green: hsl(123, 100%, 50%);
+  --electric-blue: hsl(195, 100%, 50%);
+  --cyber-cyan: hsl(180, 100%, 50%);
+  --hacker-amber: hsl(39, 100%, 50%);
+  --terminal-red: hsl(348, 100%, 50%);
+  --deep-black: hsl(0, 0%, 0%);
+  --dark-gray: hsl(0, 0%, 4%);
+  --darker-gray: hsl(0, 0%, 7%);
+}
+
+.dark {
+  --background: hsl(0, 0%, 0%);
+  --foreground: hsl(123, 100%, 50%);
+  --muted: hsl(0, 0%, 4%);
+  --muted-foreground: hsl(123, 100%, 30%);
+  --popover: hsl(0, 0%, 4%);
+  --popover-foreground: hsl(123, 100%, 50%);
+  --card: hsl(0, 0%, 7%);
+  --card-foreground: hsl(123, 100%, 50%);
+  --border: hsl(123, 100%, 50%);
+  --input: hsl(0, 0%, 7%);
+  --primary: hsl(123, 100%, 50%);
+  --primary-foreground: hsl(0, 0%, 0%);
+  --secondary: hsl(0, 0%, 7%);
+  --secondary-foreground: hsl(123, 100%, 50%);
+  --accent: hsl(195, 100%, 50%);
+  --accent-foreground: hsl(0, 0%, 0%);
+  --destructive: hsl(0, 100%, 50%);
+  --destructive-foreground: hsl(0, 0%, 100%);
+  --ring: hsl(123, 100%, 50%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-mono antialiased bg-background text-foreground;
+    background-color: var(--deep-black);
+    color: var(--matrix-green);
+    font-family: 'Courier New', 'Monaco', 'Consolas', monospace;
+  }
+}
+
+@layer components {
+  .terminal-glow {
+    box-shadow: 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.1);
+  }
+  
+  .cyber-border {
+    border: 1px solid var(--matrix-green);
+    box-shadow: 0 0 10px rgba(0, 255, 65, 0.5);
+  }
+  
+  .device-entry {
+    transition: all 0.3s ease;
+  }
+  
+  .device-entry:hover {
+    background-color: rgba(0, 255, 65, 0.1);
+    transform: translateX(5px);
+  }
+  
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+  }
+  
+  .status-scanning {
+    background-color: var(--hacker-amber);
+    animation: pulse 1s infinite;
+  }
+  
+  .status-connected {
+    background-color: var(--matrix-green);
+  }
+  
+  .status-failed {
+    background-color: var(--terminal-red);
+  }
+}
+
+@layer utilities {
+  .matrix-green {
+    color: var(--matrix-green);
+  }
+  
+  .electric-blue {
+    color: var(--electric-blue);
+  }
+  
+  .cyber-cyan {
+    color: var(--cyber-cyan);
+  }
+  
+  .hacker-amber {
+    color: var(--hacker-amber);
+  }
+  
+  .terminal-red {
+    color: var(--terminal-red);
+  }
+  
+  .deep-black {
+    background-color: var(--deep-black);
+  }
+  
+  .dark-gray {
+    background-color: var(--dark-gray);
+  }
+  
+  .darker-gray {
+    background-color: var(--darker-gray);
+  }
+}
+
+@keyframes scan {
+  0% { transform: translateY(-100%); opacity: 1; }
+  100% { transform: translateY(100vh); opacity: 0; }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes matrix-rain {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100vh); }
+}
+
+.scan-line {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--matrix-green), transparent);
+  animation: scan 3s linear infinite;
+  z-index: 10;
+}
+
+.matrix-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.matrix-char {
+  position: absolute;
+  color: var(--matrix-green);
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  opacity: 0.3;
+  animation: matrix-rain 20s linear infinite;
+}
+
+.typing-animation {
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  letter-spacing: .15em;
+  animation: typing 3.5s steps(40, end);
+}
